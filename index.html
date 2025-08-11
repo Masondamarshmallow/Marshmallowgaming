@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Marshmallow Gaming — Home</title>
+  <meta name="description" content="Marshmallow Gaming — Videos, playlists and live streams." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --red: #ff4d4d;
+      --orange: #ff8a3d;
+      --yellow: #ffd24a;
+      --bg: linear-gradient(135deg, rgba(255,77,77,0.08), rgba(255,138,61,0.06));
+      --card: #ffffff;
+      --glass: rgba(255,255,255,0.6);
+      --muted: #6b6b6b;
+      --radius: 14px;
+      --shadow: 0 8px 24px rgba(16,24,40,0.08);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background: radial-gradient(circle at 10% 10%, rgba(255,210,74,0.06), transparent 10%),
+                  radial-gradient(circle at 90% 90%, rgba(255,77,77,0.04), transparent 10%),
+                  #fff;
+      background-image: var(--bg), linear-gradient(180deg,#fff,#fff);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:28px;
+      align-items:start;
+    }
+
+    /* Header / Hero */
+    header.hero{
+      grid-column:1 / -1;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      padding:20px;
+      background: linear-gradient(90deg, rgba(255,77,77,0.06), rgba(255,138,61,0.04));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .logo{
+      width:92px;height:92px;flex:0 0 92px;border-radius:18px;background: linear-gradient(135deg,var(--red),var(--orange));
+      display:flex;align-items:center;justify-content:center;position:relative;color:#fff;font-weight:800;font-size:28px;
+      box-shadow: 0 6px 18px rgba(255,138,61,0.15) inset;
+    }
+    /* little marshmallow icon (simple) */
+    .logo svg{filter: drop-shadow(0 6px 8px rgba(0,0,0,0.08));}
+
+    .hero-text{
+      flex:1 minmax(0,1fr);
+    }
+    .channel-title{font-size:20px;font-weight:800;margin:0}
+    .channel-sub{color:var(--muted);margin-top:6px;font-size:14px}
+
+    .subscribe-wrap{display:flex;gap:10px;align-items:center}
+    .subscribe-btn{
+      background: linear-gradient(90deg,var(--red),var(--orange));
+      color:white;border:none;padding:12px 18px;border-radius:12px;font-weight:700;cursor:pointer;
+      box-shadow: 0 6px 18px rgba(255,77,77,0.18);
+    }
+    .subscribe-btn:focus{outline:3px solid rgba(255,210,74,0.35)}
+
+    .stats{font-size:13px;color:var(--muted)}
+
+    /* Left column (main feed) */
+    .feed{
+      border-radius:var(--radius);
+      padding:18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.84));
+      box-shadow: var(--shadow);
+    }
+
+    .controls{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+    .search{flex:1;display:flex}
+    .search input{flex:1;padding:10px 12px;border-radius:12px;border:1px solid rgba(16,24,40,0.06)}
+    .filter{padding:10px 12px;border-radius:12px;border:1px solid rgba(16,24,40,0.06);background:transparent}
+
+    .grid{
+      display:grid;grid-template-columns: repeat(auto-fit,minmax(240px,1fr));gap:14px;
+    }
+
+    .card{
+      background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(16,24,40,0.06);
+      display:flex;flex-direction:column;
+    }
+    .thumb{position:relative;padding-top:56.25%;background:#eee}
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .play-badge{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 8px;border-radius:8px;font-weight:700;font-size:13px}
+
+    .meta{padding:12px}
+    .meta h3{margin:0;font-size:15px}
+    .meta p{margin:8px 0 0;color:var(--muted);font-size:13px}
+
+    /* Right column */
+    aside.sidebar{
+      position:sticky;top:32px;padding:18px;border-radius:var(--radius);height:fit-content;background:linear-gradient(180deg,rgba(255,250,244,0.9),#fff);box-shadow:var(--shadow);
+    }
+    .about h4{margin:0 0 8px 0}
+    .socials{display:flex;gap:8px;margin-top:10px}
+    .pill{display:inline-block;padding:8px 10px;border-radius:999px;background:linear-gradient(90deg,var(--orange),var(--yellow));color:#fff;font-weight:700}
+
+    footer{grid-column:1 / -1;margin-top:18px;text-align:center;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .container{grid-template-columns:1fr; padding:0 12px}
+      header.hero{flex-direction:row}
+      .subscribe-wrap{margin-left:auto}
+      aside.sidebar{position:relative;top:auto}
+    }
+
+    /* small interactive niceties */
+    .logo:after{
+      content:'';position:absolute;inset:0;border-radius:14px;box-shadow:0 6px 22px rgba(255,138,61,0.12);opacity:0;transition:opacity .35s
+    }
+    .logo:hover:after{opacity:1}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="hero" role="banner">
+      <div class="logo" aria-hidden="true">
+        <!-- Simple marshmallow mascot SVG -->
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="8" y="12" width="48" height="40" rx="12" fill="white" />
+          <ellipse cx="32" cy="48" rx="18" ry="5" fill="rgba(0,0,0,0.06)" />
+          <circle cx="24" cy="28" r="3" fill="#222" />
+          <circle cx="40" cy="28" r="3" fill="#222" />
+          <path d="M22 36c3 3 10 3 14 0" stroke="#222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        </svg>
+      </div>
+
+      <div class="hero-text">
+        <h1 class="channel-title">Marshmallow Gaming</h1>
+        <div class="channel-sub">PC ✦ Indie ✦ Let’s Plays — New videos every week</div>
+        <div class="stats" aria-hidden="true">1.2M subscribers • 348 videos</div>
+      </div>
+
+      <div class="subscribe-wrap">
+        <button class="subscribe-btn" id="subscribeBtn">Subscribe</button>
+        <div style="text-align:right">
+          <div style="font-weight:700">Live now</div>
+          <div style="font-size:12px;color:var(--muted)">Battle Royale stream</div>
+        </div>
+      </div>
+    </header>
+
+    <main class="feed" role="main">
+      <div class="controls">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Search videos, playlists, tags..." aria-label="Search videos">
+        </div>
+        <select id="filterSelect" class="filter" aria-label="Filter videos">
+          <option value="all">All uploads</option>
+          <option value="live">Live</option>
+          <option value="shorts">Shorts</option>
+          <option value="playlists">Playlists</option>
+        </select>
+        <button id="loadMore" class="filter">Load more</button>
+      </div>
+
+      <section id="videoGrid" class="grid" aria-live="polite">
+        <!-- Cards inserted by JS. If you prefer static content, replace with <article> cards -->
+      </section>
+
+      <div style="margin-top:14px;display:flex;justify-content:center">
+        <button id="showAll" class="subscribe-btn" style="background:linear-gradient(90deg,var(--orange),var(--yellow));">Show featured</button>
+      </div>
+    </main>
+
+    <aside class="sidebar" role="complementary">
+      <div class="about">
+        <h4>About</h4>
+        <p style="margin:0;color:var(--muted);font-size:14px">Marshmallow Gaming plays cozy and competitive games with a relaxed vibe. Join the community for guides, highlights, and livestreams.</p>
+      </div>
+
+      <div style="margin-top:14px">
+        <div style="font-weight:700;margin-bottom:8px">Top playlists</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <span class="pill">Speedruns</span>
+          <span class="pill">Co-op Highlights</span>
+          <span class="pill">Tips & Guides</span>
+        </div>
+      </div>
+
+      <div style="margin-top:14px">
+        <div style="font-weight:700;margin-bottom:8px">Connect</div>
+        <div class="socials">
+          <a class="pill" href="#" id="ytLink">YouTube</a>
+          <a class="pill" href="#">Discord</a>
+          <a class="pill" href="#">Twitter</a>
+        </div>
+      </div>
+
+    </aside>
+
+    <footer>
+      <small>Made with ❤️ for Marshmallow Gaming • Customize the page by editing the HTML/CSS/JS</small>
+    </footer>
+
+  </div>
+
+  <script>
+    // --- Sample video data. Replace with real thumbnails/links ---
+    const sampleVideos = [
+      {id:1,title:'Marshmallow vs the Mega Boss — Full Run',thumbnail:'https://picsum.photos/id/1005/640/360',type:'upload',views:'1.3M views',time:'2 days ago'},
+      {id:2,title:'Top 10 Cozy Indie Games (2025)',thumbnail:'https://picsum.photos/id/1011/640/360',type:'upload',views:'432k views',time:'1 week ago'},
+      {id:3,title:'Ranked Clutch Moments — Live Highlights',thumbnail:'https://picsum.photos/id/1018/640/360',type:'upload',views:'98k views',time:'3 days ago'},
+      {id:4,title:"How to Speedrun: Beginner's Guide",thumbnail:'https://picsum.photos/id/1025/640/360',type:'upload',views:'210k views',time:'1 month ago'},
+      {id:5,title:'15-second Trick Shots #shorts',thumbnail:'https://picsum.photos/id/1035/640/360',type:'shorts',views:'6.2M views',time:'yesterday'},
+      {id:6,title:'Co-op Chaos — 2-player mayhem',thumbnail:'https://picsum.photos/id/1041/640/360',type:'upload',views:'78k views',time:'5 days ago'},
+    ];
+
+    const grid = document.getElementById('videoGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterSelect = document.getElementById('filterSelect');
+    const subscribeBtn = document.getElementById('subscribeBtn');
+    const ytLink = document.getElementById('ytLink');
+
+    // helper to create a card DOM node
+    function makeCard(v){
+      const a = document.createElement('article');
+      a.className = 'card';
+      a.innerHTML = `
+        <div class="thumb" role="img" aria-label="Thumbnail: ${escapeHtml(v.title)}">
+          <img loading="lazy" src="${v.thumbnail}" alt="${escapeHtml(v.title)} thumbnail">
+          <div class="play-badge">▶ ${v.views}</div>
+        </div>
+        <div class="meta">
+          <h3>${escapeHtml(v.title)}</h3>
+          <p>${escapeHtml(v.time)} • ${escapeHtml(v.type)}</p>
+        </div>
+      `;
+      return a;
+    }
+
+    // basic rendering with optional filter
+    function render(videos){
+      grid.innerHTML = '';
+      if(!videos.length){
+        grid.innerHTML = '<div style="padding:24px;color:var(--muted)">No videos found.</div>';
+        return;
+      }
+      const frag = document.createDocumentFragment();
+      videos.forEach(v => frag.appendChild(makeCard(v)));
+      grid.appendChild(frag);
+    }
+
+    // simple search/filter
+    function applyControls(){
+      const q = searchInput.value.trim().toLowerCase();
+      const filter = filterSelect.value;
+      let out = sampleVideos.slice();
+      if(filter !== 'all') out = out.filter(v => v.type === filter);
+      if(q) out = out.filter(v => (v.title + ' ' + v.type).toLowerCase().includes(q));
+      render(out);
+    }
+
+    // escape helper — small but important
+    function escapeHtml(s){
+      return String(s).replace(/[&<>\"']/g, function(ch){
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'":"&#39;'}[ch];
+      });
+    }
+
+    // wire events
+    searchInput.addEventListener('input', () => applyControls());
+    filterSelect.addEventListener('change', () => applyControls());
+
+    // Subscribe button — example behaviour: open YouTube channel (replace href)
+    subscribeBtn.addEventListener('click', ()=>{
+      const url = 'https://www.youtube.com/channel/UC_REPLACE_ME';
+      window.open(url, '_blank');
+    });
+
+    ytLink.addEventListener('click', (e)=>{ e.preventDefault(); window.open('https://www.youtube.com/channel/UC_REPLACE_ME', '_blank'); });
+
+    // load initial set
+    render(sampleVideos.slice(0,4));
+
+    // Load more behavior
+    document.getElementById('loadMore').addEventListener('click', ()=>{
+      // reveal more videos (simple demo — append remaining)
+      const existing = grid.querySelectorAll('.card').length;
+      render(sampleVideos.slice(0, Math.min(sampleVideos.length, existing + 3)));
+    });
+
+    // show featured
+    document.getElementById('showAll').addEventListener('click', ()=>{
+      render(sampleVideos);
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+
+    // accessibility: press S to focus search
+    window.addEventListener('keydown', (e)=>{
+      if(e.key.toLowerCase() === 's' && !e.metaKey && !e.ctrlKey && !e.altKey){
+        e.preventDefault(); searchInput.focus();
+      }
+    });
+
+  </script>
+</body>
+</html>
